@@ -1,0 +1,29 @@
+server:
+  port: 8081
+
+spring:
+  application:
+    name: api-gateway
+zuul:
+  routes:
+    AUTH-SERVICE:
+      serviceId: AUTH-SERVICE
+      url: http://localhost:9345
+      path: /customer/**
+      stripPrefix: false
+
+    MOVIE-SERVICE:
+      serviceId: MOVIE-SERVICE
+      url: http://localhost:9090
+      path: /movies/**
+      stripPrefix: false
+
+    MOVIE-REVIEW:
+      serviceId: MOVIE-SERVICE
+      url: http://localhost:9090
+      path: /movies-reviews/**
+      stripPrefix: false
+#  add-host-header: true
+#  add-proxy-headers: true
+#  ignore-security-headers: false
+
